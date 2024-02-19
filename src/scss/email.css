@@ -1,0 +1,99 @@
+@font-face {
+  font-family: IRANSans;
+  src: url("https://staging.shenoto.net/notify/fonts/Iranian Sans.ttf");
+}
+
+table {
+  color: black;
+  font-family: Tahoma, Verdana, Segoe, sans-serif !important;
+}
+
+td {
+  line-height: 22px !important;
+}
+
+.td-img {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+
+.td-img img {
+  width: 250px;
+  height: 250px;
+}
+
+.td-content {
+  padding: 0 0 6% 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.td-button {
+  text-align: center;
+}
+
+.main-desc{
+  text-align: justify;
+}
+@media (min-width: 575.98px) {
+
+}
+
+@media (min-width: 992px) {
+  .main-desc {
+    text-align: inherit;
+  }
+}
+
+@media (min-width: 1201px) {
+  .parent-table {
+    width: 70%;
+  }
+
+  .td-content {
+    padding: 0 2% 6% 6%;
+    width: 90%;
+    display: table-cell;
+    text-align: inherit;
+  }
+
+  .td-img {
+    width: 20%;
+    display: table-cell;
+  }
+
+  .td-img img {
+    width: 150px;
+    height: 150px;
+    margin-right: 34px;
+  }
+
+
+  .td-button {
+    text-align: left;
+  }
+
+  .ql-align-center {
+    text-align: center !important;
+  }
+
+  .ql-align-right {
+    text-align: right !important;
+  }
+
+  .ql-direction-rtl {
+    direction: rtl;
+    text-align: inherit;
+  }
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+}
+
