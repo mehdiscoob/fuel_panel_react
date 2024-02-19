@@ -33,7 +33,6 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import 'src/scss/datePicker.scss';
 import moment from "jalali-moment";
 import Select from "react-select";
-import {getDuration} from "../../helper/audioFile";
 import st from "react-datepicker";
 import {isEmpty} from "../../helper/utility";
 import axios from "axios";
@@ -113,6 +112,14 @@ const ordersCreate = () => {
       setSubmitLoading(false)
     })
   }
+
+  useEffect(()=>{
+    let newData=data;
+    let user=JSON.parse(localStorage.getItem("admin_user"));
+    if (user.type!=undefined&&user.type=="client"){
+      newData["client_id"]=user.id;
+    }
+  },[])
 
   return (
     <div>
