@@ -9,7 +9,6 @@ import store from './store'
 import * as Sentry from "@sentry/react";
 if (process.env.REACT_APP_SENTRY_KEY!=undefined) {
   Sentry.init({
-    // dsn: "https://8c7453affcb7401e9e1a11425362931c@sentry.shenoto.net/6",
     dsn: process.env.REACT_APP_SENTRY_KEY,
 
     integrations: [new Sentry.BrowserTracing()],
