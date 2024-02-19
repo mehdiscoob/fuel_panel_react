@@ -92,7 +92,7 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput ref={usernameValRef} placeholder="Username" autoComplete="username" />
+                      <CFormInput ref={usernameValRef} value="admin@gmail.com" placeholder="Username" autoComplete="username" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -100,6 +100,7 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
+                        value="123456789"
                         placeholder="Password"
                         autoComplete="current-password"
                         ref={passwordValRef}
