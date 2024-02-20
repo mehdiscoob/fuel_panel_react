@@ -21,28 +21,20 @@ import {
 import {httpGet, httpPost} from "../../helper/httpMethods";
 import 'react-quill/dist/quill.snow.css';
 import '../../scss/editor.css';
-import parse from 'html-react-parser'
 import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from "react-toastify";
-import DatePicker from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
 import 'src/scss/datePicker.scss';
-import moment from "jalali-moment";
-import Select from "react-select";
-import st from "react-datepicker";
+
 import {isEmpty} from "../../helper/utility";
-import axios from "axios";
-import ReactQuill from "react-quill";
-import {NavLink} from "react-router-dom";
+
 
 const ordersCreate = () => {
   const navigate = useNavigate();
   let [submitLoading, setSubmitLoading] = React.useState(false);
   let [clientChecked, setClientChecked] = React.useState(false);
+  let [userClient, setUserClient] = React.useState({type:"user"});
   let [clientCheckLoading, setClientCheckLoading] = React.useState(false);
   let [error, setError] = React.useState({});
   let [clientName, setClientName] = React.useState("");
@@ -114,10 +106,14 @@ const ordersCreate = () => {
   }
 
   useEffect(()=>{
-    let newData=data;
     let user=JSON.parse(localStorage.getItem("admin_user"));
     if (user.type!=undefined&&user.type=="client"){
+      let newData=data;
       newData["client_id"]=user.id;
+      newData["type"]=user.type;
+      setUserClient(user);
+      setClientChecked(true)
+      setData({...newData})
     }
   },[])
 
@@ -154,46 +150,48 @@ const ordersCreate = () => {
                     </CCol>
                   </CRow>
                 </CCol>
-                <CCol className='my-1' sm={12} lg={6} style={{paddingLeft: '0px'}}>
-                  <CRow className="align-items-start">
-                    <CCol className='my-1' sm={12}>
-                      Client*:
-                    </CCol>
-                    <CCol className='my-1' sm={12} style={{position:"relative"}}>
-                      <CFormInput
-                                  style={{border: error.client_id != undefined && "2px solid red"}}
-                                  value={clientName} onChange={(e) => {
-                        setClientName(e.target.value)
-                      }} placeholder='Client'/>
-                      <CButton
-                        disabled={clientCheckLoading}
-                        color="secondary"
-                        style={{
-                          position: 'absolute',
-                          color: 'white',
-                          right: '20px',
-                          top: '5px', // Adjust as needed for button position
-                          height: '30px',
-                          padding: 'inherit',
-                        }}
-                        onClick={()=>{clientCheck()}}
-                      >
-                        Check
-                      </CButton>
-                    </CCol>
-                    <CCol className='my-1' sm={12}>
-                      <ul style={{color: "red", fontSize: "16px"}}>
-                        {error.client_id != undefined ?
-                          error.client_id.map((item, index) => (
-                            <li key={index}>{item}</li>
-                          )): clientChecked &&
-                          <li style={{color:"#4dc374"}}>Client is checked</li>
-                        }
-                      </ul>
+                {userClient.type!=undefined&&userClient.type=="user"&&
+                  <CCol className='my-1' sm={12} lg={6} style={{paddingLeft: '0px'}}>
+                    <CRow className="align-items-start">
+                      <CCol className='my-1' sm={12}>
+                        Client*:
+                      </CCol>
+                      <CCol className='my-1' sm={12} style={{position:"relative"}}>
+                        <CFormInput
+                          style={{border: error.client_id != undefined && "2px solid red"}}
+                          value={clientName} onChange={(e) => {
+                          setClientName(e.target.value)
+                        }} placeholder='Client'/>
+                        <CButton
+                          disabled={clientCheckLoading}
+                          color="secondary"
+                          style={{
+                            position: 'absolute',
+                            color: 'white',
+                            right: '20px',
+                            top: '5px', // Adjust as needed for button position
+                            height: '30px',
+                            padding: 'inherit',
+                          }}
+                          onClick={()=>{clientCheck()}}
+                        >
+                          Check
+                        </CButton>
+                      </CCol>
+                      <CCol className='my-1' sm={12}>
+                        <ul style={{color: "red", fontSize: "16px"}}>
+                          {error.client_id != undefined ?
+                            error.client_id.map((item, index) => (
+                              <li key={index}>{item}</li>
+                            )): clientChecked &&
+                            <li style={{color:"#4dc374"}}>Client is checked</li>
+                          }
+                        </ul>
 
-                    </CCol>
-                  </CRow>
-                </CCol>
+                      </CCol>
+                    </CRow>
+                  </CCol>
+                }
                 <CCol className='my-1' sm={12} style={{paddingLeft: '0px'}}>
                   <CRow className="align-items-start">
                     <CCol className='my-1' sm={12}>

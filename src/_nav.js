@@ -19,8 +19,9 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 import {cilCommentBubble} from "@coreui/icons/js/free";
 import {cilMic} from "@coreui/icons/js/free/cil-mic";
+let user=JSON.parse(localStorage.getItem("admin_user"))
 
-const _nav = [
+let _nav = [
   // {
   //   component: CNavItem,
   //   name: 'Dashboard',
@@ -30,7 +31,7 @@ const _nav = [
   //     color: 'info',
   //     text: 'NEW',
   //   },
-  {
+ {
     component: CNavItem,
     name: 'User',
     to: '/user',
@@ -332,5 +333,6 @@ const _nav = [
   //   icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   // },
 ]
-
+// acces of client
+if (user.type=="client") {_nav= _nav.filter(q=>q.name!="User")}
 export default _nav

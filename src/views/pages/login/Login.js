@@ -82,6 +82,17 @@ const Login = () => {
       <CContainer>
         <ToastContainer/>
         <CRow className="justify-content-center">
+          <CCol sm={12}>
+            <CCard className="p-4 w-25 m-auto my-2">
+              <h3>Sample Users</h3>
+             <h4>Admin:</h4>
+              <p>username: admin@gmail.com</p>
+              <p>password: 123456789</p>
+              <h4>Client:</h4>
+              <p>username: client@gmail.com</p>
+              <p>password: 123456789</p>
+            </CCard>
+          </CCol>
           <CCol md={4}>
             <CCardGroup>
               <CCard className="p-4">
@@ -92,7 +103,7 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput ref={usernameValRef} value="admin@gmail.com" placeholder="Username" autoComplete="username" />
+                      <CFormInput ref={usernameValRef} placeholder="Username" autoComplete="username" />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -100,7 +111,6 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        value="123456789"
                         placeholder="Password"
                         autoComplete="current-password"
                         ref={passwordValRef}
