@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
@@ -14,12 +14,21 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
+import _nav from "../_nav";
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow.sidebarShow)
+  let [nav, setNav] = React.useState(navigation);
 
+  useEffect(()=>{
+  let user=JSON.parse(localStorage.getItem("admin_user"))
+  if (user.type=="client") {
+   let newNav= nav.filter(q=>q.name!="User"&&q.name!="Client")
+    setNav([...newNav]);
+  }
+},[navigation])
   return (
     <CSidebar
       position="fixed"
@@ -34,7 +43,7 @@ const AppSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation} />
+          <AppSidebarNav items={nav} />
         </SimpleBar>
       </CSidebarNav>
       <CSidebarToggler
