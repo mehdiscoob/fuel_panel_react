@@ -98,7 +98,7 @@ const ordersCreate = () => {
       toast.success('Order was Created.');
       setSubmitLoading(false)
       setTimeout(() => {
-        // navigate('/order/')
+        navigate('/order/')
       }, 1500)
     }).catch((r) => {
       setSubmitLoading(false)
