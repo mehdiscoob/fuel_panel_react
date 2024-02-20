@@ -15,7 +15,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/user', name: 'UsersTable', element: UsersTable, exact: true },
-  { path: '/client', name: 'ClientsTable', element: UsersTable, exact: true },
+  { path: '/client', name: 'ClientsTable', element: ClientsTable, exact: true },
   { path: '/order', name: 'OrdersTable', element: OrdersTable, exact: true },
   { path: '/order/create', name: 'OrdersCreate', element: OrdersCreate, exact: true },
   { path: '/order/update/:id', name: 'OrdersUpdate', element: OrdersUpdate, exact: true },
