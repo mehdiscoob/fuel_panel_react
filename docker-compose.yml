@@ -1,12 +1,12 @@
-version: '3.9'
+version: '3'
 services:
-  front:
-    container_name: ${CI_PROJECT_NAME}
-    restart:  always
-    image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+  react-app:
+    container_name: fuel-panel
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 127.0.0.1:8008:3000
-networks:
-  default:
-    external:
-      name: bridge-01
+      - "8008:3000"
+    volumes:
+      - .:/app
+    stdin_open: true
